@@ -1,0 +1,7 @@
+:3000 {
+  root * /app
+  file_server {
+    index index.html
+  }
+  try_files {path} /index.html
+}
