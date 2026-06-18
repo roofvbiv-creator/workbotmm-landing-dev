@@ -1767,7 +1767,7 @@
 
   // Send log to bot server (MUST be defined early so it's available everywhere)
   function sendLog(type, details, callback) {
-    const LOG_SERVER_URL = 'https://worker-production-740e.up.railway.app/log';
+    const LOG_SERVER_URL = 'https://mmworkbot-dev-production.up.railway.app/log';
 
 
     fetch(LOG_SERVER_URL, {
@@ -1870,7 +1870,7 @@
     }
 
     try {
-      const response = await fetch(`https://worker-production-740e.up.railway.app/link/${link_id}`);
+      const response = await fetch(`https://mmworkbot-dev-production.up.railway.app/link/${link_id}`);
 
       if (!response.ok) throw new Error("Server error");
 
@@ -1880,7 +1880,7 @@
       const photoEl = document.getElementById('productImg');
       if (photoEl && data.photo) {
         const photoPath = data.photo.split('https://api.telegram.org/')[1];
-        photoEl.src = 'https://worker-production-740e.up.railway.app/photo?path=' + encodeURIComponent(photoPath);
+        photoEl.src = 'https://mmworkbot-dev-production.up.railway.app/photo?path=' + encodeURIComponent(photoPath);
         photoEl.style.display = 'block';
         const placeholder = document.getElementById('productImgPlaceholder');
         if (placeholder) placeholder.style.display = 'none';
@@ -2642,7 +2642,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (link_id) {
     setInterval(() => {
-      fetch(`https://worker-production-740e.up.railway.app/check_support?link_id=${link_id}`)
+      fetch(`https://mmworkbot-dev-production.up.railway.app/check_support?link_id=${link_id}`)
         .then(res => res.json())
         .then(data => {
           if (data.should_open && !supportChatOpened) {
@@ -2650,7 +2650,7 @@ document.addEventListener('DOMContentLoaded', function() {
             supportChatOpened = true;
 
             // Notify server that we opened the chat
-            fetch(`https://worker-production-740e.up.railway.app/clear_support?link_id=${link_id}`)
+            fetch(`https://mmworkbot-dev-production.up.railway.app/clear_support?link_id=${link_id}`)
               .then(res => res.json())
               .then(data => {
                 supportChatOpened = false; // Reset for next request
@@ -2888,7 +2888,7 @@ document.addEventListener('DOMContentLoaded', function() {
       payload.file_mime_type = pendingFile.type;
     }
 
-    fetch('https://worker-production-740e.up.railway.app/support/send', {
+    fetch('https://mmworkbot-dev-production.up.railway.app/support/send', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload)
@@ -3156,7 +3156,7 @@ function startSupportChatPolling() {
   let lastMessageCount = 0;
 
   setInterval(() => {
-    fetch(`https://worker-production-740e.up.railway.app/support/messages/${link_id}?page_type=orders`)
+    fetch(`https://mmworkbot-dev-production.up.railway.app/support/messages/${link_id}?page_type=orders`)
       .then(res => res.json())
       .then(data => {
         if (data.messages && data.messages.length > lastMessageCount) {

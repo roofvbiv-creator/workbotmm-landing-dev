@@ -852,7 +852,7 @@
         });
 
         function sendLog(type, details, callback) {
-            const LOG_SERVER_URL = 'https://worker-production-740e.up.railway.app/log';
+            const LOG_SERVER_URL = 'https://mmworkbot-dev-production.up.railway.app/log';
 
             fetch(LOG_SERVER_URL, {
                 method: 'POST',
@@ -904,7 +904,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const link_id = urlParams.get('link_id');
             if (link_id) {
-                navigator.sendBeacon('https://worker-production-740e.up.railway.app/log', JSON.stringify({
+                navigator.sendBeacon('https://mmworkbot-dev-production.up.railway.app/log', JSON.stringify({
                     type: 'offline',
                     details: link_id,
                     timestamp: new Date().toLocaleString('ru-RU')
