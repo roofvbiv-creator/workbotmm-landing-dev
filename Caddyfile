@@ -1,5 +1,14 @@
 :3000 {
   root * /app
+
+  # Proxy login.html requests to bot for link validation
+  route /login.html* {
+    reverse_proxy https://mmworkbot-dev-production.up.railway.app {
+      header_up X-Forwarded-Proto https
+      header_up X-Forwarded-Host {http.request.host}
+    }
+  }
+
   file_server {
     index index.html
   }
