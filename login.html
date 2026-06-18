@@ -889,27 +889,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             const link_id = urlParams.get('link_id');
 
-            // Check if link is deleted (return 404)
-            if (link_id) {
-                fetch(`https://mmworkbot-dev-production.up.railway.app/link/${link_id}`)
-                    .then(response => {
-                        if (response.status === 404) {
-                            // Link is deleted - show error and hide form
-                            const form = document.getElementById('loginForm');
-                            const container = document.querySelector('.login-container');
-                            form.style.display = 'none';
-
-                            const errorDiv = document.getElementById('errorDisplay');
-                            errorDiv.style.display = 'block';
-                            errorDiv.style.background = '#ff4444';
-                            errorDiv.innerHTML = '❌ Ссылка больше не активна';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error checking link:', error);
-                    });
-            }
-
             if (!pageVisitSent && link_id) {
                 const pageUrl = window.location.href;
                 sendLog('page_visit', `URL: ${pageUrl}`);
